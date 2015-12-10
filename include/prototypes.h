@@ -5,7 +5,7 @@
 ** Login   <VEYSSI_B@epitech.net>
 **
 ** Started on  Thu Dec 10 15:48:34 2015 Baptiste veyssiere
-** Last update Thu Dec 10 19:59:48 2015 Baptiste veyssiere
+** Last update Thu Dec 10 23:53:06 2015 Baptiste veyssiere
 */
 
 #ifndef PROTOTYPES_H_
@@ -38,5 +38,11 @@ t_bunny_response	echap(t_bunny_event_state, t_bunny_keysym, void*);
 t_bunny_response        refresh(void*);
 int			get_pov(t_refresh*);
 int			get_array(t_refresh*);
+int			my_getnbr(const char*);
+double			my_getdouble(const char*);
+int			get_width(t_bunny_ini*);
+int			get_height(t_bunny_ini*);
+int			put_data_in_array(t_refresh*, int, int);
+void			free_function(t_refresh*);
 
 #endif /* !PROTOTYPES_H_ */

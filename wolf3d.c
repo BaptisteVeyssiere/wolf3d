@@ -5,12 +5,26 @@
 ** Login   <VEYSSI_B@epitech.net>
 **
 ** Started on  Wed Dec  9 11:54:05 2015 Baptiste veyssiere
-** Last update Thu Dec 10 20:00:35 2015 Baptiste veyssiere
+** Last update Fri Dec 11 00:04:51 2015 Baptiste veyssiere
 */
 
 #include "prototypes.h"
 
-t_bunny_response        echap(t_bunny_event_state state,
+void	free_function(t_refresh *ptr)
+{
+  int	height;
+  int	i;
+
+  i = 0;
+  height = get_height(ptr->ini);
+  height = height;
+  while (i < height)
+    bunny_free(ptr->map[i++]);
+  bunny_free(ptr->map);
+  bunny_free(ptr->perso);
+}
+
+t_bunny_response	echap(t_bunny_event_state state,
                               t_bunny_keysym key,
                               void *data)
 {
@@ -21,7 +35,7 @@ t_bunny_response        echap(t_bunny_event_state state,
   return (GO_ON);
 }
 
-t_bunny_response        refresh(void *p)
+t_bunny_response	refresh(void *p)
 {
   t_refresh		*ptr;
   t_bunny_position      pos;
@@ -40,12 +54,8 @@ int	main(int ac, char **av)
 
   ptr.win = bunny_start(WIDTH, HEIGHT, false, "wolf3d");
   ptr.pix = bunny_new_pixelarray(WIDTH, HEIGHT);
-  if (ac != 2 || (ptr.ini = bunny_load_ini(av[1])) == NULL)
-    {
-      write(2, "error : bad .ini file\n", 22);
-      return (1);
-    }
-  if (get_pov(&ptr) == 1 || get_array(&ptr) == 1)
+  if (ac != 2 || (ptr.ini = bunny_load_ini(av[1])) == NULL
+      || get_pov(&ptr) == 1 || get_array(&ptr) == 1)
     {
       write(2, "error : bad .ini file\n", 22);
       return (1);
@@ -55,5 +65,6 @@ int	main(int ac, char **av)
   bunny_loop(ptr.win, 30, &ptr);
   bunny_delete_clipable(&ptr.pix->clipable);
   bunny_stop(ptr.win);
+  free_function(&ptr);
   return (0);
 }
