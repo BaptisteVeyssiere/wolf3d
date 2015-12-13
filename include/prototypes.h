@@ -5,7 +5,7 @@
 ** Login   <VEYSSI_B@epitech.net>
 **
 ** Started on  Thu Dec 10 15:48:34 2015 Baptiste veyssiere
-** Last update Thu Dec 10 23:53:06 2015 Baptiste veyssiere
+** Last update Sun Dec 13 19:53:15 2015 Baptiste veyssiere
 */
 
 #ifndef PROTOTYPES_H_
@@ -15,9 +15,26 @@
 # include <math.h>
 # include <unistd.h>
 
-# define WIDTH 1080
-# define HEIGHT 720
+# define WIDTH 640
+# define HEIGHT 640
 # define SQUARE(x) ((x) * (x))
+# define X0 ptr->perso->pos.x
+# define Y0 ptr->perso->pos.y
+# define X1 coord.x
+# define Y1 coord.y
+# define ANGLE ptr->perso->angle
+
+typedef struct
+{
+  int	sky_floor;
+  int	wall;
+}		t_size;
+
+typedef struct
+{
+  float		x;
+  float		y;
+}		t_coord;
 
 typedef struct
 {
@@ -44,5 +61,12 @@ int			get_width(t_bunny_ini*);
 int			get_height(t_bunny_ini*);
 int			put_data_in_array(t_refresh*, int, int);
 void			free_function(t_refresh*);
+void			radian(double*);
+void			rotation_translation(t_coord*, double, t_pov*, float);
+void			wall_draw(t_refresh*);
+void			get_intersection_coord(t_refresh*, t_coord*, int);
+void			found_k_min(t_refresh*, t_coord, float*);
+void			get_sizes(float, t_size*);
+void			tekpixel(t_bunny_pixelarray*, t_bunny_position*, t_color*);
 
 #endif /* !PROTOTYPES_H_ */

@@ -5,7 +5,7 @@
 ## Login   <VEYSSI_B@epitech.net>
 ##
 ## Started on  Thu Dec 10 15:43:10 2015 Baptiste veyssiere
-## Last update Fri Dec 11 00:05:23 2015 Baptiste veyssiere
+## Last update Sun Dec 13 19:51:42 2015 Baptiste veyssiere
 ##
 
 CFLAGS	= -W -Wall -Werror -ansi -pedantic -I./include \
@@ -23,7 +23,11 @@ NAME	= wolf3d
 
 SRCS	= wolf3d.c \
 	get_ini_data.c \
-	my_getnbr.c
+	my_getnbr.c \
+	math.c \
+	wall_size_calculator.c \
+	wall_draw.c \
+	tekpixel.c
 
 OBJS	= $(SRCS:.c=.o)
 

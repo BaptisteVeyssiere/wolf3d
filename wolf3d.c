@@ -5,7 +5,7 @@
 ** Login   <VEYSSI_B@epitech.net>
 **
 ** Started on  Wed Dec  9 11:54:05 2015 Baptiste veyssiere
-** Last update Fri Dec 11 00:04:51 2015 Baptiste veyssiere
+** Last update Sat Dec 12 20:52:15 2015 Baptiste veyssiere
 */
 
 #include "prototypes.h"
@@ -43,6 +43,7 @@ t_bunny_response	refresh(void *p)
   ptr = p;
   pos.x = 0;
   pos.y = 0;
+  wall_draw(ptr);
   bunny_blit(&ptr->win->buffer, &ptr->pix->clipable, &pos);
   bunny_display(ptr->win);
   return (GO_ON);
@@ -60,6 +61,7 @@ int	main(int ac, char **av)
       write(2, "error : bad .ini file\n", 22);
       return (1);
     }
+  radian(&(ptr.perso->angle));
   bunny_set_key_response(echap);
   bunny_set_loop_main_function(refresh);
   bunny_loop(ptr.win, 30, &ptr);

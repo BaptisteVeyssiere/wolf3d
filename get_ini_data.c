@@ -5,7 +5,7 @@
 ** Login   <VEYSSI_B@epitech.net>
 **
 ** Started on  Thu Dec 10 20:01:21 2015 Baptiste veyssiere
-** Last update Fri Dec 11 00:04:11 2015 Baptiste veyssiere
+** Last update Fri Dec 11 20:50:04 2015 Baptiste veyssiere
 */
 
 #include "prototypes.h"
@@ -61,9 +61,9 @@ int	put_data_in_array(t_refresh *ptr, int width, int height)
   int		k;
   const char	*str;
 
-  i = 0;
+  i = height - 1;
   k = 0;
-  while (i < height)
+  while (i >= 0)
     {
       j = 0;
       while (j < width)
@@ -76,7 +76,7 @@ int	put_data_in_array(t_refresh *ptr, int width, int height)
 	    return (1);
 	  j++;
 	}
-      i++;
+      i--;
     }
   return (0);
 }
