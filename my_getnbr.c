@@ -5,7 +5,7 @@
 ** Login   <VEYSSI_B@epitech.net>
 **
 ** Started on  Wed Dec  2 22:43:56 2015 Baptiste veyssiere
-** Last update Sat Dec 12 20:43:19 2015 Baptiste veyssiere
+** Last update Tue Dec 15 22:13:58 2015 Baptiste veyssiere
 */
 
 #include "prototypes.h"
@@ -44,6 +44,9 @@ double		my_getdouble(const char *str)
   int		limit;
 
   limit = 0;
+  i = 0;
+  nbr = 0;
+  pow = 0;
   if (str[0] == '-')
     limit = 1;
   pow = 1;

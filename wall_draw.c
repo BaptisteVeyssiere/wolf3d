@@ -5,7 +5,7 @@
 ** Login   <VEYSSI_B@epitech.net>
 **
 ** Started on  Sat Dec 12 18:45:55 2015 Baptiste veyssiere
-** Last update Sun Dec 13 19:52:22 2015 Baptiste veyssiere
+** Last update Tue Dec 15 22:14:43 2015 Baptiste veyssiere
 */
 
 #include "prototypes.h"
@@ -23,37 +23,41 @@ void			wall_draw(t_refresh *ptr)
 
   x = 0;
   k = 0;
-  color[0].full = 0xFF0000;
-  color[1].full = 0xAAAAAA;
+  coord.x = 0;
+  coord.y = 0;
+  size.wall = 0;
+  size.sky_floor = 0;
+  color[0].full = 0xFEB577;
+  color[1].full = 0x798081;
   color[2].full = 0x202020;
   while (x < WIDTH)
     {
       pos.x = x;
       pos.y = 0;
-      i = 1;
       get_intersection_coord(ptr, &coord, x);
       found_k_min(ptr, coord, &k);
       get_sizes(k, &size);
+      i = 1;
       while (i < size.sky_floor)
 	{
 	  tekpixel(ptr->pix, &pos, &color[0]);
-	  pos.y++;
-	  i++;
+	  pos.y += 1;
+	  i += 1;
 	}
       i = 1;
       while (i < size.wall)
 	{
 	  tekpixel(ptr->pix, &pos, &color[1]);
-          pos.y++;
-          i++;
+          pos.y += 1;
+          i += 1;
 	}
       i = 1;
       while (i < size.sky_floor)
 	{
 	  tekpixel(ptr->pix, &pos, &color[2]);
-          pos.y++;
-          i++;
+          pos.y += 1;
+          i += 1;
 	}
-      x++;
+      x += 1;
     }
 }

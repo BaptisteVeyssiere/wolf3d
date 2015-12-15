@@ -5,7 +5,7 @@
 ** Login   <VEYSSI_B@epitech.net>
 **
 ** Started on  Thu Dec 10 15:48:34 2015 Baptiste veyssiere
-** Last update Sun Dec 13 19:53:15 2015 Baptiste veyssiere
+** Last update Tue Dec 15 15:34:24 2015 Baptiste veyssiere
 */
 
 #ifndef PROTOTYPES_H_
@@ -38,9 +38,15 @@ typedef struct
 
 typedef struct
 {
-  t_bunny_position      pos;
-  double                angle;
-}                       t_pov;
+  t_coord	pos;
+  double	angle;
+}		t_pov;
+
+typedef struct
+{
+  float		x;
+  float		y;
+}		t_axis;
 
 typedef struct
 {
@@ -49,6 +55,7 @@ typedef struct
   t_bunny_ini		*ini;
   t_pov			*perso;
   int			**map;
+  t_axis		*move;
 }			t_refresh;
 
 t_bunny_response	echap(t_bunny_event_state, t_bunny_keysym, void*);
@@ -68,5 +75,7 @@ void			get_intersection_coord(t_refresh*, t_coord*, int);
 void			found_k_min(t_refresh*, t_coord, float*);
 void			get_sizes(float, t_size*);
 void			tekpixel(t_bunny_pixelarray*, t_bunny_position*, t_color*);
+void			go(t_coord*, double, t_coord*, float);
+void			moving(t_refresh*);
 
 #endif /* !PROTOTYPES_H_ */

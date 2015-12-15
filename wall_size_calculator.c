@@ -5,7 +5,7 @@
 ** Login   <VEYSSI_B@epitech.net>
 **
 ** Started on  Sat Dec 12 18:50:27 2015 Baptiste veyssiere
-** Last update Sun Dec 13 19:56:51 2015 Baptiste veyssiere
+** Last update Wed Dec 16 00:06:43 2015 Baptiste veyssiere
 */
 
 #include "prototypes.h"
@@ -37,13 +37,19 @@ void	found_k_min(t_refresh *ptr, t_coord coord, float *k)
   int	y;
   int	x;
 
+  height = 0;
+  width = 0;
+  Vx = 0;
+  Vy = 0;
+  k_min = 0;
+  y = 0;
+  x = 0;
+  *k = 0;
   height = get_height(ptr->ini);
   width = get_width(ptr->ini);
   Vx = X1 - X0;
   Vy = Y1 - Y0;
-  x = 0;
   k_min = height * width;
-  y = 0;
   while (y < height)
     {
       *k = (y - Y0) / Vy;
@@ -51,17 +57,19 @@ void	found_k_min(t_refresh *ptr, t_coord coord, float *k)
       if (*k > 0 && x < width)
 	if (*k < k_min && ptr->map[y][x] == 1)
 	  k_min = *k;
-      y++;
+      y += 1;
     }
   x = 0;
   while (x < width)
     {
       *k = (x - X0) / Vx;
       y = Y0 + *k * Vy;
-      if (*k > 0 && y < height)
-	if (*k < k_min && ptr->map[y][x] == 1)
-	  k_min = *k;
-      x++;
+      if (*k > 0 && y < height && y >= 0)
+	{
+	  if (*k < k_min && ptr->map[y][x] == 1)
+	    k_min = *k;
+	}
+      x += 1;
     }
   *k = k_min;
 }
@@ -69,5 +77,7 @@ void	found_k_min(t_refresh *ptr, t_coord coord, float *k)
 void	get_sizes(float k, t_size *size)
 {
   size->wall = HEIGHT / (2 * k);
+  if (size->wall >= HEIGHT)
+    size->wall = 640;
   size->sky_floor = (HEIGHT - size->wall) / 2;
 }

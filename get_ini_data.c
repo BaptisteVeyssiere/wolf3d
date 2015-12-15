@@ -5,7 +5,7 @@
 ** Login   <VEYSSI_B@epitech.net>
 **
 ** Started on  Thu Dec 10 20:01:21 2015 Baptiste veyssiere
-** Last update Fri Dec 11 20:50:04 2015 Baptiste veyssiere
+** Last update Tue Dec 15 17:29:00 2015 Baptiste veyssiere
 */
 
 #include "prototypes.h"
@@ -17,6 +17,7 @@ int		get_width(t_bunny_ini *ini)
   int           i;
 
   i = 0;
+  width = 0;
   width = my_getnbr(bunny_ini_get_field(ini, "level1", "width", i++));
   return (width);
 }
@@ -27,6 +28,7 @@ int		get_height(t_bunny_ini *ini)
   int           i;
 
   i = 0;
+  height = 0;
   height = my_getnbr(bunny_ini_get_field(ini, "level1", "height", i++));
   return (height);
 }
@@ -36,21 +38,27 @@ int	get_pov(t_refresh *ptr)
   const char	*str;
   int		i;
 
+  str = NULL;
   if ((ptr->perso = bunny_malloc(sizeof(*(ptr->perso)))) == NULL)
     return (1);
+  ANGLE = 0;
+  X0 = 0;
+  Y0 = 0;
   i = 0;
   if ((str = bunny_ini_get_field(ptr->ini, "level1",
 				 "start_position", i++)) == NULL)
     return (1);
-  ptr->perso->pos.x = my_getnbr(str);
+  X0 = my_getdouble(str);
+  /*printf("%f\n", X0);*/
   if ((str = bunny_ini_get_field(ptr->ini, "level1",
 				 "start_position", i++)) == NULL)
     return (1);
-  ptr->perso->pos.y = my_getnbr(str);
+  Y0 = my_getdouble(str);
+  /*printf("%f\n", Y0);*/
   if ((str = bunny_ini_get_field(ptr->ini, "level1",
 				 "start_position", i++)) == NULL)
     return (1);
-  ptr->perso->angle = my_getdouble(str);
+  ANGLE = my_getdouble(str);
   return (0);
 }
 
@@ -63,6 +71,7 @@ int	put_data_in_array(t_refresh *ptr, int width, int height)
 
   i = height - 1;
   k = 0;
+  str = NULL;
   while (i >= 0)
     {
       j = 0;
@@ -87,6 +96,8 @@ int	get_array(t_refresh *ptr)
   int	height;
   int	i;
 
+  width = 0;
+  height = 0;
   width = get_width(ptr->ini);
   height = get_height(ptr->ini);
   if ((ptr->map = bunny_malloc(sizeof(*(ptr->map)) * height)) == NULL)
@@ -94,6 +105,7 @@ int	get_array(t_refresh *ptr)
   i = 0;
   while (i < height)
     {
+      ptr->map[i] = NULL;
       if ((ptr->map[i] = bunny_malloc(sizeof(**(ptr->map)) * width)) == NULL)
 	return (1);
       i++;

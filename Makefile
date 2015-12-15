@@ -5,7 +5,7 @@
 ## Login   <VEYSSI_B@epitech.net>
 ##
 ## Started on  Thu Dec 10 15:43:10 2015 Baptiste veyssiere
-## Last update Sun Dec 13 19:51:42 2015 Baptiste veyssiere
+## Last update Tue Dec 15 18:56:47 2015 Baptiste veyssiere
 ##
 
 CFLAGS	= -W -Wall -Werror -ansi -pedantic -I./include \
@@ -27,12 +27,14 @@ SRCS	= wolf3d.c \
 	math.c \
 	wall_size_calculator.c \
 	wall_draw.c \
-	tekpixel.c
+	tekpixel.c \
+	moving.c \
+	go.c
 
 OBJS	= $(SRCS:.c=.o)
 
 $(NAME): $(OBJS)
-	$(CC) -o $(NAME) $(OBJS) $(LDFLAGS)
+	$(CC) -g -o $(NAME) $(OBJS) $(LDFLAGS)
 
 all: $(NAME)
 
