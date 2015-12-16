@@ -5,7 +5,7 @@
 ** Login   <VEYSSI_B@epitech.net>
 **
 ** Started on  Fri Dec 11 12:03:00 2015 Baptiste veyssiere
-** Last update Sun Dec 13 15:24:09 2015 Baptiste veyssiere
+** Last update Wed Dec 16 00:58:02 2015 Baptiste veyssiere
 */
 
 #include "prototypes.h"
@@ -23,4 +23,11 @@ void	rotation_translation(t_coord *coord, double angle, t_pov *perso, float x)
   coord->x += perso->pos.x;
   coord->y = asin(angle) + acos(angle);
   coord->y += perso->pos.y;
+}
+
+double	double_modulo(double nbr, double div)
+{
+  while (nbr >= div)
+    nbr -= div;
+  return (nbr);
 }

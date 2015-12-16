@@ -5,7 +5,7 @@
 ** Login   <VEYSSI_B@epitech.net>
 **
 ** Started on  Wed Dec  9 11:54:05 2015 Baptiste veyssiere
-** Last update Tue Dec 15 22:32:37 2015 Baptiste veyssiere
+** Last update Wed Dec 16 18:24:35 2015 Baptiste veyssiere
 */
 
 #include "prototypes.h"
@@ -35,19 +35,18 @@ t_bunny_response	echap(t_bunny_event_state state,
   ptr = data;
   ptr->move->y = 0;
   ptr->move->x = 0;
-  if (key == BKS_UP)
+  if (key == BKS_Z)
     ptr->move->y = 0.05;
-  else if (key == BKS_DOWN)
+  if (key == BKS_S)
     ptr->move->y = -0.05;
-  else if (key == BKS_LEFT)
+  if (key == BKS_Q)
     ptr->move->x = 0.05;
-  else if (key == BKS_RIGHT)
+  if (key == BKS_D)
     ptr->move->x = -0.05;
-  else
-    {
-      ptr->move->y = 0;
-      ptr->move->x = 0;
-    }
+  if (key == BKS_LEFT)
+    ptr->move->angle = (M_PI / 40);
+  if (key == BKS_RIGHT)
+    ptr->move->angle = -(M_PI / 40);
   state = state;
   if (key == BKS_ESCAPE)
     return (EXIT_ON_SUCCESS);
@@ -65,6 +64,7 @@ t_bunny_response	refresh(void *p)
   pos.y = 0;
   wall_draw(ptr);
   moving(ptr);
+  angle_rotation(ptr);
   bunny_blit(&ptr->win->buffer, &ptr->pix->clipable, &pos);
   bunny_display(ptr->win);
   return (GO_ON);
@@ -86,7 +86,7 @@ int	main(int ac, char **av)
   radian(&(ptr.perso->angle));
   bunny_set_key_response(echap);
   bunny_set_loop_main_function(refresh);
-  bunny_loop(ptr.win, 20, &ptr);
+  bunny_loop(ptr.win, 30, &ptr);
   bunny_delete_clipable(&ptr.pix->clipable);
   bunny_stop(ptr.win);
   free_function(&ptr);

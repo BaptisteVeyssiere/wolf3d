@@ -5,7 +5,7 @@
 ** Login   <VEYSSI_B@epitech.net>
 **
 ** Started on  Thu Dec 10 15:48:34 2015 Baptiste veyssiere
-** Last update Tue Dec 15 15:34:24 2015 Baptiste veyssiere
+** Last update Wed Dec 16 10:46:17 2015 Baptiste veyssiere
 */
 
 #ifndef PROTOTYPES_H_
@@ -15,8 +15,8 @@
 # include <math.h>
 # include <unistd.h>
 
-# define WIDTH 640
-# define HEIGHT 640
+# define WIDTH 1920
+# define HEIGHT 1080
 # define SQUARE(x) ((x) * (x))
 # define X0 ptr->perso->pos.x
 # define Y0 ptr->perso->pos.y
@@ -46,6 +46,7 @@ typedef struct
 {
   float		x;
   float		y;
+  double	angle;
 }		t_axis;
 
 typedef struct
@@ -77,5 +78,7 @@ void			get_sizes(float, t_size*);
 void			tekpixel(t_bunny_pixelarray*, t_bunny_position*, t_color*);
 void			go(t_coord*, double, t_coord*, float);
 void			moving(t_refresh*);
+double			double_modulo(double, double);
+void			angle_rotation(t_refresh*);
 
 #endif /* !PROTOTYPES_H_ */
