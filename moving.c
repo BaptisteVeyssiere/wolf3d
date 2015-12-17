@@ -5,7 +5,7 @@
 ** Login   <VEYSSI_B@epitech.net>
 **
 ** Started on  Mon Dec 14 20:30:27 2015 Baptiste veyssiere
-** Last update Wed Dec 16 16:04:30 2015 Baptiste veyssiere
+** Last update Thu Dec 17 12:16:36 2015 Baptiste veyssiere
 */
 
 #include "prototypes.h"
@@ -32,16 +32,11 @@ void	moving(t_refresh *ptr)
 	  X0 = newpos.x;
 	  Y0 = newpos.y;
 	}
-      ptr->move->x = 0;
-      ptr->move->y = 0;
     }
 }
 
 void	angle_rotation(t_refresh *ptr)
 {
   if (ptr->move->angle != 0)
-    {
-      ANGLE += ptr->move->angle;
-      ptr->move->angle = 0;
-    }
+    ANGLE += ptr->move->angle;
 }
