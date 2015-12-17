@@ -5,7 +5,7 @@
 ** Login   <VEYSSI_B@epitech.net>
 **
 ** Started on  Thu Dec 10 15:48:34 2015 Baptiste veyssiere
-** Last update Wed Dec 16 10:46:17 2015 Baptiste veyssiere
+** Last update Thu Dec 17 11:30:38 2015 Baptiste veyssiere
 */
 
 #ifndef PROTOTYPES_H_
@@ -80,5 +80,6 @@ void			go(t_coord*, double, t_coord*, float);
 void			moving(t_refresh*);
 double			double_modulo(double, double);
 void			angle_rotation(t_refresh*);
+void			music(t_bunny_music*);
 
 #endif /* !PROTOTYPES_H_ */

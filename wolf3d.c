@@ -5,7 +5,7 @@
 ** Login   <VEYSSI_B@epitech.net>
 **
 ** Started on  Wed Dec  9 11:54:05 2015 Baptiste veyssiere
-** Last update Wed Dec 16 18:24:35 2015 Baptiste veyssiere
+** Last update Thu Dec 17 11:41:20 2015 Baptiste veyssiere
 */
 
 #include "prototypes.h"
@@ -73,6 +73,7 @@ t_bunny_response	refresh(void *p)
 int	main(int ac, char **av)
 {
   t_refresh	ptr;
+  t_bunny_music	*song;
 
   ptr.win = bunny_start(WIDTH, HEIGHT, false, "wolf3d");
   ptr.pix = bunny_new_pixelarray(WIDTH, HEIGHT);
@@ -83,10 +84,14 @@ int	main(int ac, char **av)
       write(2, "error : bad .ini file\n", 22);
       return (1);
     }
+  if ((song = bunny_load_music("music/earthworm_jim.ogg")) == NULL)
+    return (1);
+  music(song);
   radian(&(ptr.perso->angle));
   bunny_set_key_response(echap);
   bunny_set_loop_main_function(refresh);
   bunny_loop(ptr.win, 30, &ptr);
+  bunny_delete_sound(song);
   bunny_delete_clipable(&ptr.pix->clipable);
   bunny_stop(ptr.win);
   free_function(&ptr);

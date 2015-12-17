@@ -5,7 +5,7 @@
 ** Login   <VEYSSI_B@epitech.net>
 **
 ** Started on  Sat Dec 12 18:45:55 2015 Baptiste veyssiere
-** Last update Tue Dec 15 22:14:43 2015 Baptiste veyssiere
+** Last update Wed Dec 16 19:50:01 2015 Baptiste veyssiere
 */
 
 #include "prototypes.h"
@@ -19,7 +19,7 @@ void			wall_draw(t_refresh *ptr)
   t_coord		coord;
   t_size		size;
   t_bunny_position	pos;
-  t_color		color[3];
+  t_color		color[4];
 
   x = 0;
   k = 0;
@@ -28,8 +28,9 @@ void			wall_draw(t_refresh *ptr)
   size.wall = 0;
   size.sky_floor = 0;
   color[0].full = 0xFEB577;
-  color[1].full = 0x798081;
-  color[2].full = 0x202020;
+  color[1].full = 0xAEAEAE;
+  color[2].full = 0x606060;
+  color[3].full = 0x303030;
   while (x < WIDTH)
     {
       pos.x = x;
@@ -44,13 +45,17 @@ void			wall_draw(t_refresh *ptr)
 	  pos.y += 1;
 	  i += 1;
 	}
+      tekpixel(ptr->pix, &pos, &color[3]);
+      pos.y += 1;
       i = 1;
-      while (i < size.wall)
+      while (i < (size.wall - 2))
 	{
 	  tekpixel(ptr->pix, &pos, &color[1]);
           pos.y += 1;
           i += 1;
 	}
+      tekpixel(ptr->pix, &pos, &color[3]);
+      pos.y += 1;
       i = 1;
       while (i < size.sky_floor)
 	{
