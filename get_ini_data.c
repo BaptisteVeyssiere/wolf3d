@@ -5,11 +5,10 @@
 ** Login   <VEYSSI_B@epitech.net>
 **
 ** Started on  Thu Dec 10 20:01:21 2015 Baptiste veyssiere
-** Last update Tue Dec 15 17:29:00 2015 Baptiste veyssiere
+** Last update Fri Dec 18 12:30:41 2015 Baptiste veyssiere
 */
 
 #include "prototypes.h"
-#include <stdio.h>
 
 int		get_width(t_bunny_ini *ini)
 {
@@ -49,12 +48,10 @@ int	get_pov(t_refresh *ptr)
 				 "start_position", i++)) == NULL)
     return (1);
   X0 = my_getdouble(str);
-  /*printf("%f\n", X0);*/
   if ((str = bunny_ini_get_field(ptr->ini, "level1",
 				 "start_position", i++)) == NULL)
     return (1);
   Y0 = my_getdouble(str);
-  /*printf("%f\n", Y0);*/
   if ((str = bunny_ini_get_field(ptr->ini, "level1",
 				 "start_position", i++)) == NULL)
     return (1);

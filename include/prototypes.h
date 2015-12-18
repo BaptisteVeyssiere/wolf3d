@@ -5,7 +5,7 @@
 ** Login   <VEYSSI_B@epitech.net>
 **
 ** Started on  Thu Dec 10 15:48:34 2015 Baptiste veyssiere
-** Last update Thu Dec 17 15:49:13 2015 Baptiste veyssiere
+** Last update Fri Dec 18 13:51:12 2015 Baptiste veyssiere
 */
 
 #ifndef PROTOTYPES_H_
@@ -15,8 +15,15 @@
 # include <math.h>
 # include <unistd.h>
 
-# define WIDTH 1280
+# define WIDTH 1080
 # define HEIGHT 720
+# define BLACK_LINE 0x303030
+# define SKY 0xFEB577
+# define GROUND 0x606060
+# define LIGHT_GREY 0xB8B8B8
+# define GREY 0xAEAEAE
+# define MEDIUM_GREY 0xA4A4A4
+# define DARK_GREY 0x9A9A9A
 # define SQUARE(x) ((x) * (x))
 # define X0 ptr->perso->pos.x
 # define Y0 ptr->perso->pos.y
@@ -72,6 +79,7 @@ int			get_pov(t_refresh*);
 int			get_array(t_refresh*);
 int			my_getnbr(const char*);
 double			my_getdouble(const char*);
+void			double_filler(const char*, int*, double*, double);
 int			get_width(t_bunny_ini*);
 int			get_height(t_bunny_ini*);
 int			put_data_in_array(t_refresh*, int, int);
@@ -79,8 +87,13 @@ void			free_function(t_refresh*);
 void			radian(double*);
 void			rotation_translation(t_coord*, double, t_pov*, float);
 void			wall_draw(t_refresh*);
+void			initializer(t_inter_dist*, t_bunny_position*, t_coord*, t_size*);
+void			sky(t_size, t_refresh*, t_bunny_position*);
+void			wall(t_refresh*, t_bunny_position*, t_size, t_inter_dist);
+void			ground(t_refresh*, t_size, t_bunny_position*);
 void			get_intersection_coord(t_refresh*, t_coord*, int);
-void			found_k_min(t_refresh*, t_coord, t_inter_dist*);
+void			found_k_min_y(t_refresh*, t_coord, t_inter_dist*);
+void			found_k_min_x(t_refresh*, t_coord, t_inter_dist*, float*);
 void			get_sizes(t_inter_dist, t_size*);
 void			tekpixel(t_bunny_pixelarray*, t_bunny_position*, t_color*);
 void			go(t_coord*, double, t_coord*, float);

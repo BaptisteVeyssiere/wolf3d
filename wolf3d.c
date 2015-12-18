@@ -5,7 +5,7 @@
 ** Login   <VEYSSI_B@epitech.net>
 **
 ** Started on  Wed Dec  9 11:54:05 2015 Baptiste veyssiere
-** Last update Thu Dec 17 12:16:11 2015 Baptiste veyssiere
+** Last update Fri Dec 18 13:57:31 2015 Baptiste veyssiere
 */
 
 #include "prototypes.h"
@@ -59,7 +59,6 @@ t_bunny_response	echap(t_bunny_event_state state,
     ptr->move->angle = 0;
   if (key == BKS_RIGHT && state == GO_UP)
     ptr->move->angle = 0;
-  state = state;
   if (key == BKS_ESCAPE)
     return (EXIT_ON_SUCCESS);
   return (GO_ON);

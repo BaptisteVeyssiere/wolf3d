@@ -5,11 +5,10 @@
 ** Login   <VEYSSI_B@epitech.net>
 **
 ** Started on  Mon Dec 14 20:30:27 2015 Baptiste veyssiere
-** Last update Thu Dec 17 12:16:36 2015 Baptiste veyssiere
+** Last update Fri Dec 18 12:32:11 2015 Baptiste veyssiere
 */
 
 #include "prototypes.h"
-#include <stdio.h>
 
 void	moving(t_refresh *ptr)
 {
@@ -27,7 +26,8 @@ void	moving(t_refresh *ptr)
 	go(&(ptr->perso->pos), ANGLE, &newpos, ptr->move->y);
       else if (ptr->move->x)
 	go(&(ptr->perso->pos), (ANGLE + M_PI / 2), &newpos, ptr->move->x);
-      if (newpos.x < (width -1) && newpos.x > 0 && newpos.y > 0 && newpos.y < (height - 1) && ptr->map[(int)newpos.y][(int)newpos.x] == 0)
+      if (newpos.x < (width -1) && newpos.x > 0 && newpos.y > 0 && newpos.y
+	  < (height - 1) && ptr->map[(int)newpos.y][(int)newpos.x] == 0)
 	{
 	  X0 = newpos.x;
 	  Y0 = newpos.y;

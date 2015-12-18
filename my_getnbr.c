@@ -5,7 +5,7 @@
 ** Login   <VEYSSI_B@epitech.net>
 **
 ** Started on  Wed Dec  2 22:43:56 2015 Baptiste veyssiere
-** Last update Tue Dec 15 22:13:58 2015 Baptiste veyssiere
+** Last update Fri Dec 18 12:34:56 2015 Baptiste veyssiere
 */
 
 #include "prototypes.h"
@@ -36,6 +36,18 @@ int	my_getnbr(const char *str)
   return (nbr);
 }
 
+void	double_filler(const char *str, int *i, double *nbr, double pow)
+{
+  while (str[*i] != 0)
+    {
+      if (str[*i] == '.')
+        (*i)++;
+      *nbr += (pow * (str[*i] - 48));
+      pow /= 10;
+      (*i)++;
+    }
+}
+
 double		my_getdouble(const char *str)
 {
   int		i;
@@ -55,14 +67,7 @@ double		my_getdouble(const char *str)
     pow *= 10;
   pow /= 10;
   i = limit;
-  while (str[i] != 0)
-    {
-      if (str[i] == '.')
-	i++;
-      nbr += (pow * (str[i] - 48));
-      pow /= 10;
-      i++;
-    }
+  double_filler(str, &i, &nbr, pow);
   if (str[0] == '-')
     nbr *= -1;
   return (nbr);
