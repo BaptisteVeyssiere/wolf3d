@@ -5,7 +5,7 @@
 ** Login   <VEYSSI_B@epitech.net>
 **
 ** Started on  Sat Dec 12 18:50:27 2015 Baptiste veyssiere
-** Last update Fri Dec 18 12:57:42 2015 Baptiste veyssiere
+** Last update Fri Dec 18 23:32:10 2015 Baptiste veyssiere
 */
 
 #include "prototypes.h"
@@ -91,7 +91,7 @@ void		found_k_min_y(t_refresh *ptr, t_coord coord, t_inter_dist *k)
 
 void	get_sizes(t_inter_dist k, t_size *size)
 {
-  size->wall = HEIGHT / (2 * k.dist);
+  size->wall = HEIGHT / k.dist;
   if (size->wall >= HEIGHT)
     size->wall = HEIGHT;
   size->sky_floor = (HEIGHT - size->wall) / 2;
