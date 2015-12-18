@@ -5,7 +5,7 @@
 ## Login   <VEYSSI_B@epitech.net>
 ##
 ## Started on  Thu Dec 10 15:43:10 2015 Baptiste veyssiere
-## Last update Thu Dec 17 11:30:00 2015 Baptiste veyssiere
+## Last update Fri Dec 18 22:09:10 2015 Baptiste veyssiere
 ##
 
 CFLAGS	= -W -Wall -Werror -ansi -pedantic -I./include \
@@ -30,7 +30,8 @@ SRCS	= wolf3d.c \
 	tekpixel.c \
 	moving.c \
 	go.c \
-	music.c
+	music.c \
+	bitmap.c
 
 OBJS	= $(SRCS:.c=.o)
 

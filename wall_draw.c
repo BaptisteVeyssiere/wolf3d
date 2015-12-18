@@ -5,7 +5,7 @@
 ** Login   <VEYSSI_B@epitech.net>
 **
 ** Started on  Sat Dec 12 18:45:55 2015 Baptiste veyssiere
-** Last update Fri Dec 18 13:51:40 2015 Baptiste veyssiere
+** Last update Fri Dec 18 16:58:15 2015 Baptiste veyssiere
 */
 
 #include "prototypes.h"
@@ -61,7 +61,7 @@ void		wall(t_refresh *ptr, t_bunny_position *pos, t_size size, t_inter_dist k)
       else if (k.x < X0 && k.x != 0)
 	tekpixel(ptr->pix, pos, &color[2]);
       else
-	tekpixel(ptr->pix, pos, &color[3]);
+      tekpixel(ptr->pix, pos, &color[3]);
       pos->y += 1;
       i += 1;
     }

@@ -5,7 +5,7 @@
 ** Login   <VEYSSI_B@epitech.net>
 **
 ** Started on  Wed Dec  9 11:54:05 2015 Baptiste veyssiere
-** Last update Fri Dec 18 13:57:31 2015 Baptiste veyssiere
+** Last update Fri Dec 18 16:11:59 2015 Baptiste veyssiere
 */
 
 #include "prototypes.h"
@@ -90,7 +90,8 @@ int	main(int ac, char **av)
   ptr.pix = bunny_new_pixelarray(WIDTH, HEIGHT);
   if (ac != 2 || (ptr.ini = bunny_load_ini(av[1])) == NULL
       || get_pov(&ptr) == 1 || get_array(&ptr) == 1 ||
-      (ptr.move = bunny_malloc(sizeof(*(ptr.move)))) == NULL)
+      (ptr.move = bunny_malloc(sizeof(*(ptr.move)))) == NULL ||
+      (get_width(ptr.ini) < 3 && get_height(ptr.ini) < 3) || bitmap(&ptr) == 1)
     {
       write(2, "error : bad .ini file\n", 22);
       return (1);

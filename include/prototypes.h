@@ -5,7 +5,7 @@
 ** Login   <VEYSSI_B@epitech.net>
 **
 ** Started on  Thu Dec 10 15:48:34 2015 Baptiste veyssiere
-** Last update Fri Dec 18 13:51:12 2015 Baptiste veyssiere
+** Last update Fri Dec 18 23:22:40 2015 Baptiste veyssiere
 */
 
 #ifndef PROTOTYPES_H_
@@ -14,9 +14,14 @@
 # include <lapin.h>
 # include <math.h>
 # include <unistd.h>
+# include <sys/types.h>
+# include <sys/stat.h>
+# include <fcntl.h>
 
 # define WIDTH 1080
 # define HEIGHT 720
+# define TEXTURE_NBR 8
+# define TEXTURE_SIZE 64
 # define BLACK_LINE 0x303030
 # define SKY 0xFEB577
 # define GROUND 0x606060
@@ -40,8 +45,8 @@ typedef struct
 
 typedef struct
 {
-  int	sky_floor;
-  int	wall;
+  int		sky_floor;
+  int		wall;
 }		t_size;
 
 typedef struct
@@ -71,6 +76,7 @@ typedef struct
   t_pov			*perso;
   int			**map;
   t_axis		*move;
+  t_bunny_pixelarray	*textures;
 }			t_refresh;
 
 t_bunny_response	echap(t_bunny_event_state, t_bunny_keysym, void*);
@@ -101,5 +107,7 @@ void			moving(t_refresh*);
 double			double_modulo(double, double);
 void			angle_rotation(t_refresh*);
 void			music(t_bunny_music*);
+int			bitmap(t_refresh*);
+int			read_bitmap(int, t_bunny_position, t_refresh*);
 
 #endif /* !PROTOTYPES_H_ */
