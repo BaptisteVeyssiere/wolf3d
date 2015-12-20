@@ -5,7 +5,7 @@
 ** Login   <VEYSSI_B@epitech.net>
 **
 ** Started on  Wed Dec  9 11:54:05 2015 Baptiste veyssiere
-** Last update Fri Dec 18 16:11:59 2015 Baptiste veyssiere
+** Last update Sun Dec 20 17:41:57 2015 Baptiste veyssiere
 */
 
 #include "prototypes.h"
@@ -33,30 +33,28 @@ t_bunny_response	echap(t_bunny_event_state state,
   t_refresh	*ptr;
 
   ptr = data;
-  ptr->move->y = 0;
-  ptr->move->x = 0;
   if (key == BKS_Z && state == GO_DOWN)
     ptr->move->y = 0.05;
+  else if (key == BKS_Z && state == GO_UP)
+    ptr->move->y = 0;
   if (key == BKS_S && state == GO_DOWN)
     ptr->move->y = -0.05;
+  else if (key == BKS_S && state == GO_UP)
+    ptr->move->y = 0;
   if (key == BKS_Q && state == GO_DOWN)
     ptr->move->x = 0.05;
+  else if (key == BKS_Q && state == GO_UP)
+    ptr->move->x = 0;
   if (key == BKS_D && state == GO_DOWN)
     ptr->move->x = -0.05;
+  else if (key == BKS_D && state == GO_UP)
+    ptr->move->x = 0;
   if (key == BKS_LEFT && state == GO_DOWN)
     ptr->move->angle = (M_PI / 40);
-  if (key == BKS_RIGHT && state == GO_DOWN)
-    ptr->move->angle = -(M_PI / 40);
-  if (key == BKS_Z && state == GO_UP)
-    ptr->move->y = 0;
-  if (key == BKS_S && state == GO_UP)
-    ptr->move->y = 0;
-  if (key == BKS_Q && state == GO_UP)
-    ptr->move->x = 0;
-  if (key == BKS_D && state == GO_UP)
-    ptr->move->x = 0;
   if (key == BKS_LEFT && state == GO_UP)
     ptr->move->angle = 0;
+  if (key == BKS_RIGHT && state == GO_DOWN)
+    ptr->move->angle = -(M_PI / 40);
   if (key == BKS_RIGHT && state == GO_UP)
     ptr->move->angle = 0;
   if (key == BKS_ESCAPE)

@@ -5,7 +5,7 @@
 ** Login   <VEYSSI_B@epitech.net>
 **
 ** Started on  Sat Dec 12 18:45:55 2015 Baptiste veyssiere
-** Last update Fri Dec 18 16:58:15 2015 Baptiste veyssiere
+** Last update Sun Dec 20 17:29:58 2015 Baptiste veyssiere
 */
 
 #include "prototypes.h"
@@ -30,43 +30,40 @@ void	sky(t_size size, t_refresh *ptr, t_bunny_position *pos)
 
   i = 1;
   color[0].full = SKY;
-  color[1].full = BLACK_LINE;
   while (i < size.sky_floor)
     {
       tekpixel(ptr->pix, pos, &color[0]);
       pos->y += 1;
       i += 1;
     }
-  tekpixel(ptr->pix, pos, &color[1]);
-  pos->y += 1;
 }
 
 void		wall(t_refresh *ptr, t_bunny_position *pos, t_size size, t_inter_dist k)
 {
   int		i;
-  t_color	color[5];
+  float		scale;
+  t_color	*color;
+  float		index;
 
   i = 1;
-  color[0].full = BLACK_LINE;
-  color[1].full = LIGHT_GREY;
-  color[2].full = GREY;
-  color[3].full = MEDIUM_GREY;
-  color[4].full = DARK_GREY;
+  scale = ((float)TEXTURE_SIZE / (float)size.wall);
+  color = ptr->textures[k.texture - 1]->pixels;
+  index = 0;
   while (i < (size.wall - 1))
     {
-      if (k.y < Y0 && k.y != 0)
-	tekpixel(ptr->pix, pos, &color[1]);
+      /*if (k.y < Y0 && k.y != 0)
+	tekpixel(ptr->pix, pos, &color[0]);
       else if (k.y >= Y0 && k.y != 0)
-	tekpixel(ptr->pix, pos, &color[4]);
+	tekpixel(ptr->pix, pos, &color[3]);
       else if (k.x < X0 && k.x != 0)
-	tekpixel(ptr->pix, pos, &color[2]);
+	tekpixel(ptr->pix, pos, &color[1]);
       else
-      tekpixel(ptr->pix, pos, &color[3]);
+      tekpixel(ptr->pix, pos, &color[2]);*/
+      tekpixel(ptr->pix, pos, &color[((int)index * TEXTURE_SIZE) + k.offset]);
       pos->y += 1;
+      index += scale;
       i += 1;
     }
-  tekpixel(ptr->pix, pos, &color[0]);
-  pos->y += 1;
 }
 
 void		ground(t_refresh *ptr, t_size size, t_bunny_position *pos)

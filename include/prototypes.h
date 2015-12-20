@@ -5,7 +5,7 @@
 ** Login   <VEYSSI_B@epitech.net>
 **
 ** Started on  Thu Dec 10 15:48:34 2015 Baptiste veyssiere
-** Last update Fri Dec 18 23:22:40 2015 Baptiste veyssiere
+** Last update Sun Dec 20 17:17:35 2015 Baptiste veyssiere
 */
 
 #ifndef PROTOTYPES_H_
@@ -23,8 +23,8 @@
 # define TEXTURE_NBR 8
 # define TEXTURE_SIZE 64
 # define BLACK_LINE 0x303030
-# define SKY 0xFEB577
-# define GROUND 0x606060
+# define SKY 0x383838
+# define GROUND 0x707070
 # define LIGHT_GREY 0xB8B8B8
 # define GREY 0xAEAEAE
 # define MEDIUM_GREY 0xA4A4A4
@@ -41,6 +41,8 @@ typedef struct
   float		dist;
   int		x;
   int		y;
+  int		offset;
+  int		texture;
 }		t_inter_dist;
 
 typedef struct
@@ -76,7 +78,7 @@ typedef struct
   t_pov			*perso;
   int			**map;
   t_axis		*move;
-  t_bunny_pixelarray	*textures;
+  t_bunny_pixelarray	*textures[TEXTURE_NBR];
 }			t_refresh;
 
 t_bunny_response	echap(t_bunny_event_state, t_bunny_keysym, void*);
@@ -108,6 +110,6 @@ double			double_modulo(double, double);
 void			angle_rotation(t_refresh*);
 void			music(t_bunny_music*);
 int			bitmap(t_refresh*);
-int			read_bitmap(int, t_bunny_position, t_refresh*);
+int			read_bitmap(int, t_bunny_position, t_refresh*, int);
 
 #endif /* !PROTOTYPES_H_ */

@@ -5,7 +5,7 @@
 ** Login   <VEYSSI_B@epitech.net>
 **
 ** Started on  Sat Dec 12 18:50:27 2015 Baptiste veyssiere
-** Last update Fri Dec 18 23:32:10 2015 Baptiste veyssiere
+** Last update Sun Dec 20 17:23:49 2015 Baptiste veyssiere
 */
 
 #include "prototypes.h"
@@ -44,12 +44,17 @@ void		found_k_min_x(t_refresh *ptr, t_coord vector, t_inter_dist *k,
       k->dist = (x - X0) / vector.x;
       y = Y0 + k->dist * vector.y;
       if (k->dist > 0 && y < height && y >= 0)
-        if (k->dist < *k_min && (ptr->map[y][x - 1] == 1 ||
-                                ((x < width) && ptr->map[y][x] == 1)))
+        if (k->dist < *k_min && (ptr->map[y][x - 1] != 0 ||
+                                ((x < width) && ptr->map[y][x] != 0)))
           {
             *k_min = k->dist;
             k->x = x;
             k->y = 0;
+	    k->offset  = ((Y0 + k->dist * vector.y) - (int)(Y0 + k->dist * vector.y)) * TEXTURE_SIZE;
+	    if (ptr->map[y][x - 1] != 0)
+	      k->texture = ptr->map[y][x - 1];
+	    else
+	      k->texture = ptr->map[y][x];
           }
       x += 1;
     }
@@ -77,11 +82,16 @@ void		found_k_min_y(t_refresh *ptr, t_coord coord, t_inter_dist *k)
       k->dist = (y - Y0) / vector.y;
       x = X0 + k->dist * vector.x;
       if (k->dist > 0 && x < width)
-	if (k->dist < k_min && (ptr->map[y - 1][x] == 1 ||
-				((y < height) && ptr->map[y][x] == 1)))
+	if (k->dist < k_min && (ptr->map[y - 1][x] != 0 ||
+				((y < height) && ptr->map[y][x] != 0)))
 	  {
 	    k_min = k->dist;
 	    k->y = y;
+	    k->offset = ((X0 + k->dist * vector.x) - (int)(X0 + k->dist * vector.x)) * TEXTURE_SIZE;
+	    if (ptr->map[y - 1][x] != 0)
+	      k->texture = ptr->map[y - 1][x];
+            else
+	      k->texture = ptr->map[y][x];
 	  }
       y += 1;
     }
