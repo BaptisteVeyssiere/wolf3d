@@ -5,7 +5,7 @@
 ** Login   <VEYSSI_B@epitech.net>
 **
 ** Started on  Sat Dec 12 18:45:55 2015 Baptiste veyssiere
-** Last update Sun Dec 20 17:29:58 2015 Baptiste veyssiere
+** Last update Mon Dec 21 17:12:00 2015 Baptiste veyssiere
 */
 
 #include "prototypes.h"
@@ -46,7 +46,7 @@ void		wall(t_refresh *ptr, t_bunny_position *pos, t_size size, t_inter_dist k)
   float		index;
 
   i = 1;
-  scale = ((float)TEXTURE_SIZE / (float)size.wall);
+  scale = ((float)TEXTURE_SIZE / (float)(HEIGHT / k.dist));
   color = ptr->textures[k.texture - 1]->pixels;
   index = 0;
   while (i < (size.wall - 1))
@@ -59,7 +59,10 @@ void		wall(t_refresh *ptr, t_bunny_position *pos, t_size size, t_inter_dist k)
 	tekpixel(ptr->pix, pos, &color[1]);
       else
       tekpixel(ptr->pix, pos, &color[2]);*/
-      tekpixel(ptr->pix, pos, &color[((int)index * TEXTURE_SIZE) + k.offset]);
+      if ((HEIGHT / k.dist) > HEIGHT)
+	tekpixel(ptr->pix, pos, &color[((int)index + (int)(scale * (((HEIGHT / k.dist) - HEIGHT) / 2))) * TEXTURE_SIZE + k.offset]);
+      else
+	tekpixel(ptr->pix, pos, &color[(int)index * TEXTURE_SIZE + k.offset]);
       pos->y += 1;
       index += scale;
       i += 1;

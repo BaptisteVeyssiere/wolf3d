@@ -5,7 +5,7 @@
 ** Login   <VEYSSI_B@epitech.net>
 **
 ** Started on  Sat Dec 12 18:50:27 2015 Baptiste veyssiere
-** Last update Sun Dec 20 17:23:49 2015 Baptiste veyssiere
+** Last update Sun Dec 20 18:05:55 2015 Baptiste veyssiere
 */
 
 #include "prototypes.h"
@@ -50,7 +50,8 @@ void		found_k_min_x(t_refresh *ptr, t_coord vector, t_inter_dist *k,
             *k_min = k->dist;
             k->x = x;
             k->y = 0;
-	    k->offset  = ((Y0 + k->dist * vector.y) - (int)(Y0 + k->dist * vector.y)) * TEXTURE_SIZE;
+	    k->offset  = ((Y0 + k->dist * vector.y) - (int)(Y0 + k->dist * vector.y))
+	      * TEXTURE_SIZE;
 	    if (ptr->map[y][x - 1] != 0)
 	      k->texture = ptr->map[y][x - 1];
 	    else
@@ -87,7 +88,8 @@ void		found_k_min_y(t_refresh *ptr, t_coord coord, t_inter_dist *k)
 	  {
 	    k_min = k->dist;
 	    k->y = y;
-	    k->offset = ((X0 + k->dist * vector.x) - (int)(X0 + k->dist * vector.x)) * TEXTURE_SIZE;
+	    k->offset = ((X0 + k->dist * vector.x) - (int)(X0 + k->dist * vector.x))
+	      * TEXTURE_SIZE;
 	    if (ptr->map[y - 1][x] != 0)
 	      k->texture = ptr->map[y - 1][x];
             else

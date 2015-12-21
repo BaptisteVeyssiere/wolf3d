@@ -5,7 +5,7 @@
 ** Login   <VEYSSI_B@epitech.net>
 **
 ** Started on  Thu Dec 10 15:48:34 2015 Baptiste veyssiere
-** Last update Sun Dec 20 17:17:35 2015 Baptiste veyssiere
+** Last update Mon Dec 21 12:30:38 2015 Baptiste veyssiere
 */
 
 #ifndef PROTOTYPES_H_
@@ -20,7 +20,7 @@
 
 # define WIDTH 1080
 # define HEIGHT 720
-# define TEXTURE_NBR 8
+# define TEXTURE_NBR 6
 # define TEXTURE_SIZE 64
 # define BLACK_LINE 0x303030
 # define SKY 0x383838
@@ -111,5 +111,6 @@ void			angle_rotation(t_refresh*);
 void			music(t_bunny_music*);
 int			bitmap(t_refresh*);
 int			read_bitmap(int, t_bunny_position, t_refresh*, int);
+int			bitmap_loop(t_refresh*, char**, int);
 
 #endif /* !PROTOTYPES_H_ */
