@@ -5,7 +5,7 @@
 ** Login   <VEYSSI_B@epitech.net>
 **
 ** Started on  Mon Dec 14 20:30:27 2015 Baptiste veyssiere
-** Last update Wed Dec 23 12:13:54 2015 Baptiste veyssiere
+** Last update Wed Dec 23 16:31:11 2015 Baptiste veyssiere
 */
 
 #include "wolf3d.h"
@@ -32,6 +32,10 @@ void	moving(t_refresh *ptr)
 	  X0 = newpos.x;
 	  Y0 = newpos.y;
 	}
+      else if (ptr->map[(int)newpos.y][(int)X0] == 0)
+	Y0 = newpos.y;
+      else if (ptr->map[(int)Y0][(int)newpos.x] == 0)
+	X0 = newpos.x;
     }
 }
 
