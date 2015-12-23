@@ -5,10 +5,10 @@
 ** Login   <VEYSSI_B@epitech.net>
 **
 ** Started on  Sat Dec 12 18:45:55 2015 Baptiste veyssiere
-** Last update Mon Dec 21 17:12:00 2015 Baptiste veyssiere
+** Last update Wed Dec 23 12:15:15 2015 Baptiste veyssiere
 */
 
-#include "prototypes.h"
+#include "wolf3d.h"
 
 void	initializer(t_inter_dist *k, t_bunny_position *pos,
 		    t_coord *coord, t_size *size)

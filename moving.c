@@ -5,10 +5,10 @@
 ** Login   <VEYSSI_B@epitech.net>
 **
 ** Started on  Mon Dec 14 20:30:27 2015 Baptiste veyssiere
-** Last update Fri Dec 18 12:32:11 2015 Baptiste veyssiere
+** Last update Wed Dec 23 12:13:54 2015 Baptiste veyssiere
 */
 
-#include "prototypes.h"
+#include "wolf3d.h"
 
 void	moving(t_refresh *ptr)
 {

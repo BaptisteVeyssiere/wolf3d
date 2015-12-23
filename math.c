@@ -5,10 +5,10 @@
 ** Login   <VEYSSI_B@epitech.net>
 **
 ** Started on  Fri Dec 11 12:03:00 2015 Baptiste veyssiere
-** Last update Wed Dec 16 00:58:02 2015 Baptiste veyssiere
+** Last update Wed Dec 23 12:13:45 2015 Baptiste veyssiere
 */
 
-#include "prototypes.h"
+#include "wolf3d.h"
 
 void	radian(double *angle)
 {

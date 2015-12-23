@@ -5,10 +5,10 @@
 ** Login   <VEYSSI_B@epitech.net>
 **
 ** Started on  Fri Dec 18 15:13:25 2015 Baptiste veyssiere
-** Last update Mon Dec 21 12:28:28 2015 Baptiste veyssiere
+** Last update Wed Dec 23 12:12:52 2015 Baptiste veyssiere
 */
 
-#include "prototypes.h"
+#include "wolf3d.h"
 
 int	read_bitmap(int fd, t_bunny_position pos, t_refresh *ptr, int i)
 {

@@ -5,11 +5,10 @@
 ** Login   <VEYSSI_B@epitech.net>
 **
 ** Started on  Sat Dec 12 18:50:27 2015 Baptiste veyssiere
-** Last update Sun Dec 20 18:05:55 2015 Baptiste veyssiere
+** Last update Wed Dec 23 12:15:28 2015 Baptiste veyssiere
 */
 
-#include "prototypes.h"
-#include <stdio.h>
+#include "wolf3d.h"
 
 void	get_intersection_coord(t_refresh *ptr, t_coord *intersection, int column)
 {

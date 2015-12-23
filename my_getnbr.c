@@ -5,10 +5,10 @@
 ** Login   <VEYSSI_B@epitech.net>
 **
 ** Started on  Wed Dec  2 22:43:56 2015 Baptiste veyssiere
-** Last update Fri Dec 18 12:34:56 2015 Baptiste veyssiere
+** Last update Wed Dec 23 12:14:16 2015 Baptiste veyssiere
 */
 
-#include "prototypes.h"
+#include "wolf3d.h"
 
 int	my_getnbr(const char *str)
 {

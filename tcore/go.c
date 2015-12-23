@@ -5,10 +5,10 @@
 ** Login   <VEYSSI_B@epitech.net>
 **
 ** Started on  Mon Dec 14 20:20:56 2015 Baptiste veyssiere
-** Last update Mon Dec 14 20:28:52 2015 Baptiste veyssiere
+** Last update Wed Dec 23 12:17:59 2015 Baptiste veyssiere
 */
 
-#include "prototypes.h"
+#include "wolf3d.h"
 
 void	go(t_bunny_position *curpos, double angle, t_bunny_position *newpos, int move)
 {

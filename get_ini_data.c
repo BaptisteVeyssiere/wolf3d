@@ -5,10 +5,10 @@
 ** Login   <VEYSSI_B@epitech.net>
 **
 ** Started on  Thu Dec 10 20:01:21 2015 Baptiste veyssiere
-** Last update Fri Dec 18 12:30:41 2015 Baptiste veyssiere
+** Last update Wed Dec 23 12:13:17 2015 Baptiste veyssiere
 */
 
-#include "prototypes.h"
+#include "wolf3d.h"
 
 int		get_width(t_bunny_ini *ini)
 {

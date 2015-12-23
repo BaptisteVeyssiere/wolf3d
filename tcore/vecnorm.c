@@ -5,10 +5,10 @@
 ** Login   <VEYSSI_B@epitech.net>
 **
 ** Started on  Thu Dec 10 17:23:14 2015 Baptiste veyssiere
-** Last update Thu Dec 10 17:29:50 2015 Baptiste veyssiere
+** Last update Wed Dec 23 12:18:32 2015 Baptiste veyssiere
 */
 
-#include "prototypes.h"
+#include "wolf3d.h"
 
 double	vecnorm(t_bunny_position *coord0, t_bunny_position *coord1)
 {
