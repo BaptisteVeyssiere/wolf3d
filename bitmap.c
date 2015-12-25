@@ -5,46 +5,62 @@
 ** Login   <VEYSSI_B@epitech.net>
 **
 ** Started on  Fri Dec 18 15:13:25 2015 Baptiste veyssiere
-** Last update Wed Dec 23 12:12:52 2015 Baptiste veyssiere
+** Last update Thu Dec 24 23:49:50 2015 Baptiste veyssiere
 */
 
 #include "wolf3d.h"
+#include <stdio.h>
 
 int	read_bitmap(int fd, t_bunny_position pos, t_refresh *ptr, int i)
 {
   t_color	*color;
 
   color = ptr->textures[i]->pixels;
-  read(fd, &color[pos.x + pos.y * TEXTURE_SIZE].argb[1], 1);
-  read(fd, &color[pos.x + pos.y * TEXTURE_SIZE].argb[0], 1);
-  read(fd, &color[pos.x + pos.y * TEXTURE_SIZE].argb[2], 1);
+  if (read(fd, &color[pos.x + pos.y * TEXTURE_SIZE].argb[2], 1) < 1 ||
+      read(fd, &color[pos.x + pos.y * TEXTURE_SIZE].argb[1], 1) < 1 ||
+      read(fd, &color[pos.x + pos.y * TEXTURE_SIZE].argb[0], 1) < 1)
+    return (1);
+  return (0);
+}
+
+int	bitmap_header(int fd, int *width, int *height)
+{
+  int	offset;
+  char	buffer[OFFSET_LIM] = {0};
+
+  *height = 0;
+  *width= 0;
+  offset = 0;
+  if (read(fd, buffer, 10) < 1 || read(fd, &offset, 4) < 1 ||
+      read(fd, buffer, 4) < 1 || read(fd, width, 4) < 1 ||
+      read(fd, height, 4) < 1 || read(fd, buffer, (offset - 26)) < 1)
+    return (1);
   return (0);
 }
 
 int	bitmap_loop(t_refresh *ptr, char *name[TEXTURE_NBR], int i)
 {
-  char                  buffer[TEXTURE_SIZE + 72];
   int                   fd;
   t_bunny_position      pos;
+  int			width;
+  int			height;
 
   while (i < TEXTURE_NBR)
     {
-      ptr->textures[i] = bunny_new_pixelarray(TEXTURE_SIZE, TEXTURE_SIZE);
-      fd = open(name[i], O_RDONLY);
-      read(fd, buffer, TEXTURE_SIZE + 72);
-      pos.y = TEXTURE_SIZE - 1;
+      if ((fd = open(name[i], O_RDONLY)) == -1 ||
+	  bitmap_header(fd, &width, &height) == 1)
+	return (1);
+      ptr->textures[i] = bunny_new_pixelarray(width, height);
+      pos.y = height;
       pos.x = 0;
-      while (pos.y >= 0)
+      while (--pos.y >= 0)
         {
-          pos.x = 0;
-          while (pos.x < TEXTURE_SIZE)
-            {
-              if (read_bitmap(fd, pos, ptr, i) == 1)
-                return (1);
-              ++pos.x;
-            }
-          --pos.y;
+          pos.x = -1;
+          while (++pos.x < width)
+	    if (read_bitmap(fd, pos, ptr, i) == 1)
+	      return (1);
         }
+      close(fd);
       ++i;
     }
   return (0);

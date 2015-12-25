@@ -5,31 +5,24 @@
 ** Login   <VEYSSI_B@epitech.net>
 **
 ** Started on  Thu Dec 10 20:01:21 2015 Baptiste veyssiere
-** Last update Wed Dec 23 12:13:17 2015 Baptiste veyssiere
+** Last update Fri Dec 25 00:36:28 2015 Baptiste veyssiere
 */
 
 #include "wolf3d.h"
 
-int		get_width(t_bunny_ini *ini)
+int		get_width_and_height(t_refresh *ptr)
 {
-  int           width;
   int           i;
 
   i = 0;
-  width = 0;
-  width = my_getnbr(bunny_ini_get_field(ini, "level1", "width", i++));
-  return (width);
-}
-
-int		get_height(t_bunny_ini *ini)
-{
-  int           height;
-  int           i;
-
+  if ((ptr->width =
+       my_getnbr(bunny_ini_get_field(ptr->ini, "level1", "width", i++))) < 0)
+    return (1);
   i = 0;
-  height = 0;
-  height = my_getnbr(bunny_ini_get_field(ini, "level1", "height", i++));
-  return (height);
+  if ((ptr->height =
+       my_getnbr(bunny_ini_get_field(ptr->ini, "level1", "height", i++))) < 0)
+    return (1);
+  return (0);
 }
 
 int	get_pov(t_refresh *ptr)
@@ -59,26 +52,26 @@ int	get_pov(t_refresh *ptr)
   return (0);
 }
 
-int	put_data_in_array(t_refresh *ptr, int width, int height)
+int	put_data_in_array(t_refresh *ptr)
 {
   int		i;
   int		j;
   int		k;
   const char	*str;
 
-  i = height - 1;
+  i = ptr->height - 1;
   k = 0;
   str = NULL;
   while (i >= 0)
     {
       j = 0;
-      while (j < width)
+      while (j < ptr->width)
 	{
 	  if ((str = bunny_ini_get_field(ptr->ini, "level1", "data", k++)) == NULL)
 	    return (1);
 	  ptr->map[i][j] = my_getnbr(str);
-	  if (ptr->map[i][j] == 0 && (i == 0 || i == (height - 1)
-				      || j == 0 || j == (width - 1)))
+	  if (ptr->map[i][j] == 0 && (i == 0 || i == (ptr->height - 1)
+				      || j == 0 || j == (ptr->width - 1)))
 	    return (1);
 	  j++;
 	}
@@ -89,25 +82,20 @@ int	put_data_in_array(t_refresh *ptr, int width, int height)
 
 int	get_array(t_refresh *ptr)
 {
-  int	width;
-  int	height;
   int	i;
 
-  width = 0;
-  height = 0;
-  width = get_width(ptr->ini);
-  height = get_height(ptr->ini);
-  if ((ptr->map = bunny_malloc(sizeof(*(ptr->map)) * height)) == NULL)
+  if ((ptr->map = bunny_malloc(sizeof(*(ptr->map)) * ptr->height)) == NULL)
     return (1);
   i = 0;
-  while (i < height)
+  while (i < ptr->height)
     {
       ptr->map[i] = NULL;
-      if ((ptr->map[i] = bunny_malloc(sizeof(**(ptr->map)) * width)) == NULL)
+      if ((ptr->map[i] =
+	   bunny_malloc(sizeof(**(ptr->map)) * ptr->width)) == NULL)
 	return (1);
       i++;
     }
-  if (put_data_in_array(ptr, width, height) == 1)
+  if (put_data_in_array(ptr) == 1)
     return (1);
   return (0);
 }

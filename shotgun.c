@@ -5,67 +5,68 @@
 ** Login   <VEYSSI_B@epitech.net>
 **
 ** Started on  Mon Dec 21 17:50:34 2015 Baptiste veyssiere
-** Last update Wed Dec 23 14:50:06 2015 Baptiste veyssiere
+** Last update Fri Dec 25 00:56:41 2015 Baptiste veyssiere
 */
 
 #include "wolf3d.h"
 
-int     read_shotgun_sprite(int fd, t_bunny_position pos, t_refresh *ptr, int i)
+int	read_shotgun_sprite(int fd, t_bunny_position *pos, t_refresh *ptr, int i)
 {
   t_color       *color;
   int		j;
+  int		k;
 
   color = ptr->shotgun[i]->pixels;
-  j = 0;
-  read(fd, &color[pos.x + pos.y * TEXTURE_SIZE * 6].argb[1], 1);
-  read(fd, &color[pos.x + pos.y * TEXTURE_SIZE * 6].argb[0], 1);
-  read(fd, &color[pos.x + pos.y * TEXTURE_SIZE * 6].argb[2], 1);
-  if (color[pos.x + pos.y * TEXTURE_SIZE * 6].full == 0xFF880098)
-    color[pos.x + pos.y * TEXTURE_SIZE * 6].full = 0x00000000;
-  while (j < 6)
+  j = -1;
+  if (read(fd, &color[pos->x + pos->y * TEXTURE_SIZE * 6].argb[2], 1) < 1 ||
+      read(fd, &color[pos->x + pos->y * TEXTURE_SIZE * 6].argb[1], 1) < 1 ||
+      read(fd, &color[pos->x + pos->y * TEXTURE_SIZE * 6].argb[0], 1) < 1)
+    return (1);
+  if (color[pos->x + pos->y * TEXTURE_SIZE * 6].argb[1] == 0
+      && color[pos->x + pos->y * TEXTURE_SIZE * 6].argb[0] == 152)
+    color[pos->x + pos->y * TEXTURE_SIZE * 6].argb[3] = 0;
+  while (++j < 6)
     {
-      if (j > 0)
-	color[pos.x + (pos.y - j) * TEXTURE_SIZE * 6].full = color[pos.x + pos.y * TEXTURE_SIZE * 6].full;
-      color[pos.x + 1 + (pos.y - j) * TEXTURE_SIZE * 6].full = color[pos.x + pos.y * TEXTURE_SIZE * 6].full;
-      color[pos.x + 2 + (pos.y - j) * TEXTURE_SIZE * 6].full = color[pos.x + pos.y * TEXTURE_SIZE * 6].full;
-      color[pos.x + 3 + (pos.y - j) * TEXTURE_SIZE * 6].full = color[pos.x + pos.y * TEXTURE_SIZE * 6].full;
-      color[pos.x + 4 + (pos.y - j) * TEXTURE_SIZE * 6].full = color[pos.x + pos.y * TEXTURE_SIZE * 6].full;
-      color[pos.x + 5 + (pos.y - j) * TEXTURE_SIZE * 6].full = color[pos.x + pos.y * TEXTURE_SIZE * 6].full;
-      ++j;
+      k = -1;
+      while (++k < 6)
+	if (j > 0 || k > 0)
+	  color[pos->x + k + (pos->y - j) * TEXTURE_SIZE * 6].full =
+	    color[pos->x + pos->y * TEXTURE_SIZE * 6].full;
     }
+  pos->x += 6;
   return (0);
 }
 
-int     shotgun_loop(t_refresh *ptr, char *name[SHOTGUN_NBR], int i)
+int	shotgun_loop(t_refresh *ptr, char *name[TEXTURE_NBR], int i)
 {
-  char                  buffer[TEXTURE_SIZE + 72];
   int                   fd;
   t_bunny_position      pos;
+  int                   width;
+  int                   height;
 
-  while (i < TEXTURE_NBR)
+  while (i < SHOTGUN_NBR)
     {
-      ptr->shotgun[i] = bunny_new_pixelarray(TEXTURE_SIZE * 6, TEXTURE_SIZE * 6);
-      fd = open(name[i], O_RDONLY);
-      read(fd, buffer, TEXTURE_SIZE + 72);
-      pos.y = (6 * TEXTURE_SIZE) - 1;
+      if ((fd = open(name[i], O_RDONLY)) == -1 ||
+          bitmap_header(fd, &width, &height) == 1)
+        return (1);
+      ptr->shotgun[i] = bunny_new_pixelarray(width * 6, height * 6);
+      pos.y = (height * 6) - 1;
       pos.x = 0;
       while (pos.y > 0)
         {
           pos.x = 0;
-          while (pos.x < (TEXTURE_SIZE * 6))
-            {
-              if (read_shotgun_sprite(fd, pos, ptr, i) == 1)
-                return (1);
-              pos.x += 6;
-            }
-          pos.y -= 6;
+          while (pos.x < (width * 6))
+	    if (read_shotgun_sprite(fd, &pos, ptr, i) == 1)
+	      return (1);
+	  pos.y -= 6;
         }
+      close(fd);
       ++i;
     }
   return (0);
 }
 
-int     shotgun(t_refresh *ptr)
+int	shotgun(t_refresh *ptr)
 {
   int   i;
   char  *name[SHOTGUN_NBR] =

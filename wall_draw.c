@@ -5,7 +5,7 @@
 ** Login   <VEYSSI_B@epitech.net>
 **
 ** Started on  Sat Dec 12 18:45:55 2015 Baptiste veyssiere
-** Last update Wed Dec 23 12:15:15 2015 Baptiste veyssiere
+** Last update Fri Dec 25 16:46:31 2015 Baptiste veyssiere
 */
 
 #include "wolf3d.h"
@@ -51,16 +51,9 @@ void		wall(t_refresh *ptr, t_bunny_position *pos, t_size size, t_inter_dist k)
   index = 0;
   while (i < (size.wall - 1))
     {
-      /*if (k.y < Y0 && k.y != 0)
-	tekpixel(ptr->pix, pos, &color[0]);
-      else if (k.y >= Y0 && k.y != 0)
-	tekpixel(ptr->pix, pos, &color[3]);
-      else if (k.x < X0 && k.x != 0)
-	tekpixel(ptr->pix, pos, &color[1]);
-      else
-      tekpixel(ptr->pix, pos, &color[2]);*/
       if ((HEIGHT / k.dist) > HEIGHT)
-	tekpixel(ptr->pix, pos, &color[((int)index + (int)(scale * (((HEIGHT / k.dist) - HEIGHT) / 2))) * TEXTURE_SIZE + k.offset]);
+	tekpixel(ptr->pix, pos, &color[((int)index + (int)
+					(scale * (((HEIGHT / k.dist) - HEIGHT) / 2))) * TEXTURE_SIZE + k.offset]);
       else
 	tekpixel(ptr->pix, pos, &color[(int)index * TEXTURE_SIZE + k.offset]);
       pos->y += 1;
@@ -98,7 +91,9 @@ void			wall_draw(t_refresh *ptr)
       initializer(&k, &pos, &coord, &size);
       pos.x = x;
       get_intersection_coord(ptr, &coord, x);
-      found_k_min_y(ptr, coord, &k);
+      k.vector.x = X1 - X0;
+      k.vector.y = Y1 - Y0;
+      found_k_min_y(ptr, &k);
       get_sizes(k, &size);
       sky(size, ptr, &pos);
       wall(ptr, &pos, size, k);

@@ -5,7 +5,7 @@
 ** Login   <VEYSSI_B@epitech.net>
 **
 ** Started on  Thu Dec 17 11:27:10 2015 Baptiste veyssiere
-** Last update Wed Dec 23 12:14:06 2015 Baptiste veyssiere
+** Last update Thu Dec 24 17:45:56 2015 Baptiste veyssiere
 */
 
 #include "wolf3d.h"

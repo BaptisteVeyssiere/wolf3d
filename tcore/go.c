@@ -5,12 +5,13 @@
 ** Login   <VEYSSI_B@epitech.net>
 **
 ** Started on  Mon Dec 14 20:20:56 2015 Baptiste veyssiere
-** Last update Wed Dec 23 12:17:59 2015 Baptiste veyssiere
+** Last update Fri Dec 25 00:37:37 2015 Baptiste veyssiere
 */
 
-#include "wolf3d.h"
+#include "prototypes.h"
 
-void	go(t_bunny_position *curpos, double angle, t_bunny_position *newpos, int move)
+void	go(t_bunny_position *curpos, double angle,
+	   t_bunny_position *newpos, int move)
 {
   newpos->x = curpos->x + move * cos(angle);
   newpos->y = curpos->y + move * sin(angle);
